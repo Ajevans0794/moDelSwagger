@@ -1,0 +1,3701 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "MoDel Integration API",
+    "description": "MoDel Integration API.",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://uat.model-portal.net/UAT_01/MoDel.Integration.Web.Api"
+    }
+  ],
+  "paths": {
+    "/api/v1/agents": {
+      "get": {
+        "tags": [
+          "Agent"
+        ],
+        "summary": "Get available Agents for the moDel VM account",
+        "parameters": [
+          {
+            "name": "MoDelVMID",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CountryCode",
+            "in": "query",
+            "description": "Optional",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentDataIEnumerableApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentDataIEnumerableApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentDataIEnumerableApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job/billing": {
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Get the Job billing data",
+        "parameters": [
+          {
+            "name": "MoDelVMID",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UniqueIdentifier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PinCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingRsModelApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingRsModelApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingRsModelApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job/expenses": {
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Get Expenses data for the Job",
+        "parameters": [
+          {
+            "name": "MoDelVMID",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UniqueIdentifier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CreatedDateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "CreatedDateTo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "AgentId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpensesReportRsModelIEnumerableApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpensesReportRsModelIEnumerableApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpensesReportRsModelIEnumerableApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/document": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Get Document data",
+        "parameters": [
+          {
+            "name": "OrderNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UniqueIdentifier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PinCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FormType",
+            "in": "query",
+            "description": "'Collection' - 1, 'Delivery' - 2",
+            "schema": {
+              "$ref": "#/components/schemas/DocumentFormType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentDataApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentDataApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentDataApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Submit Document data",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitDocumentRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitDocumentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitDocumentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitDocumentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/document/image": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Get Document images",
+        "parameters": [
+          {
+            "name": "OrderNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UniqueIdentifier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PinCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FormType",
+            "in": "query",
+            "description": "1 - 'Collection', 2 - 'Delivery'",
+            "schema": {
+              "$ref": "#/components/schemas/DocumentFormType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentImageDataApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentImageDataApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentImageDataApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job": {
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Get Job Details",
+        "parameters": [
+          {
+            "name": "MoDelVMID",
+            "in": "query",
+            "description": "Required only when accessing with Job Provider API user",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CountryCode",
+            "in": "query",
+            "description": "Optional",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DealerCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UniqueIdentifier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PinCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDetailsApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDetailsApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDetailsApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Create new Job",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobData"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedJobDataApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedJobDataApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedJobDataApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Update existing Job",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobData"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedJobDataApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedJobDataApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedJobDataApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job/import": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Share Job or import from LL",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportJobRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportJobRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportJobRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportJobRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDetailsApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDetailsApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDetailsApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job/agent": {
+      "put": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Assign Agent to the Job",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignAgentRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignAgentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignAgentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignAgentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job/offer": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Offer the job",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobOfferRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobOfferRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobOfferRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobOfferRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobOfferResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobOfferResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobOfferResponseApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job/revoke": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Revoke the offered job",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevokeRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevokeRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevokeRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevokeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevokeResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevokeResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevokeResponseApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job/cancel": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Cancel Job",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelJobRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelJobRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelJobRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelJobRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job/abort": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Abort Job",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AbortJobRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AbortJobRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AbortJobRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AbortJobRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/job/history": {
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Get Job history",
+        "parameters": [
+          {
+            "name": "MoDelVMID",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UniqueIdentifier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PinCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CountryCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryRsModelApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryRsModelApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryRsModelApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/document/pdf": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Get Document PDF",
+        "parameters": [
+          {
+            "name": "OrderNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UniqueIdentifier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PinCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FormType",
+            "in": "query",
+            "description": "1 - 'Collection', 2 - 'Delivery'",
+            "schema": {
+              "$ref": "#/components/schemas/DocumentFormType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentPdfDataApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentPdfDataApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentPdfDataApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/document/pdf/base64": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Get Document PDF (base64)",
+        "parameters": [
+          {
+            "name": "OrderNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UniqueIdentifier",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PinCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FormType",
+            "in": "query",
+            "description": "1 - 'Collection', 2 - 'Delivery'",
+            "schema": {
+              "$ref": "#/components/schemas/DocumentFormType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentPdfBase64DataApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentPdfBase64DataApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentPdfBase64DataApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/subscription": {
+      "get": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Get list of subscribed events",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionDataIEnumerableApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionDataIEnumerableApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionDataIEnumerableApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Subscribe to event",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeData"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "callbacks": {
+          "CollectionDateChanged": {
+            "{$request.body#/callbackUrl}": {
+              "post": {
+                "summary": "CollectionDateChanged",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/CollectionDateChangedCallback"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server returns this code if it accepts the callback"
+                  }
+                }
+              }
+            }
+          },
+          "CollectionAddressChanged": {
+            "{$request.body#/callbackUrl}": {
+              "post": {
+                "summary": "CollectionAddressChanged",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/CollectionAddressChangedCallback"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server returns this code if it accepts the callback"
+                  }
+                }
+              }
+            }
+          },
+          "DeliveryDateChanged": {
+            "{$request.body#/callbackUrl}": {
+              "post": {
+                "summary": "DeliveryDateChanged",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/DeliveryDateChangedCallback"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server returns this code if it accepts the callback"
+                  }
+                }
+              }
+            }
+          },
+          "DeliveryAddressChanged": {
+            "{$request.body#/callbackUrl}": {
+              "post": {
+                "summary": "DeliveryAddressChanged",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/DeliveryAddressChangedCallback"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server returns this code if it accepts the callback"
+                  }
+                }
+              }
+            }
+          },
+          "ItemDetailsChanged": {
+            "{$request.body#/callbackUrl}": {
+              "post": {
+                "summary": "ItemDetailsChanged",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ItemDetailsChangedCallback"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server returns this code if it accepts the callback"
+                  }
+                }
+              }
+            }
+          },
+          "JobStatusChanged": {
+            "{$request.body#/callbackUrl}": {
+              "post": {
+                "summary": "JobStatusChanged",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/JobStatusChangedCallback"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server returns this code if it accepts the callback"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Unsubscribe from event",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnsubscribeData"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnsubscribeData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnsubscribeData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnsubscribeData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Authenticate user and get access token",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTokenRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTokenRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTokenRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenDataApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenDataApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenDataApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AbortJobRequest": {
+        "type": "object",
+        "properties": {
+          "moDelVMID": {
+            "type": "string",
+            "description": "Required only when accessing as Job Provider",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "withCharges": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AdditionalDetailsItem": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgentData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "isLinkedToApp": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgentDataIEnumerableApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignAgentRequest": {
+        "type": "object",
+        "properties": {
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "Optional",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "reAssign": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BillingAdditionalCostRsModel": {
+        "type": "object",
+        "properties": {
+          "include": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "saleValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "vatRate": {
+            "type": "string",
+            "nullable": true
+          },
+          "vatPercentage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "vatAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BillingExpensesRsModel": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "saleValue": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "vatRate": {
+            "type": "string",
+            "nullable": true
+          },
+          "vatPercentage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "vatAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BillingJobCostingRsModel": {
+        "type": "object",
+        "properties": {
+          "clientName": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingRate": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobMileage": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "saleValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "discountPercentage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "discountAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "discountDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "subTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "vatRate": {
+            "type": "string",
+            "nullable": true
+          },
+          "vatAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "vatPercentage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BillingRsModel": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobType": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateRequired": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "invoiceDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "invoiceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "vatAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillingVehicleRsModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BillingRsModelApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/BillingRsModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BillingVehicleRsModel": {
+        "type": "object",
+        "properties": {
+          "vehicleType": {
+            "type": "string",
+            "nullable": true
+          },
+          "poNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "make": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "derivative": {
+            "type": "string",
+            "nullable": true
+          },
+          "colour": {
+            "type": "string",
+            "nullable": true
+          },
+          "collectionPostCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryPostCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobCosting": {
+            "$ref": "#/components/schemas/BillingJobCostingRsModel"
+          },
+          "additionalCosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillingAdditionalCostRsModel"
+            },
+            "nullable": true
+          },
+          "expenses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillingExpensesRsModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CancelJobRequest": {
+        "type": "object",
+        "properties": {
+          "moDelVMID": {
+            "type": "string",
+            "description": "Required only when accessing as Job Provider",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClientDetails": {
+        "type": "object",
+        "properties": {
+          "clientName": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientJobType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollectionAddressChangedCallback": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "event": {
+            "$ref": "#/components/schemas/EventType"
+          },
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "payload": {
+            "$ref": "#/components/schemas/CollectionAddressChangedCallback.Data"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollectionAddressChangedCallback.Data": {
+        "type": "object",
+        "properties": {
+          "address1": {
+            "type": "string",
+            "nullable": true
+          },
+          "address2": {
+            "type": "string",
+            "nullable": true
+          },
+          "town": {
+            "type": "string",
+            "nullable": true
+          },
+          "county": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "postCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollectionDateChangedCallback": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "event": {
+            "$ref": "#/components/schemas/EventType"
+          },
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "payload": {
+            "$ref": "#/components/schemas/CollectionDateChangedCallback.Data"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollectionDateChangedCallback.Data": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateJobData": {
+        "type": "object",
+        "properties": {
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "dealerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "submission": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "jobProfile": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobHeader": {
+            "$ref": "#/components/schemas/JobHeader"
+          },
+          "clientDetails": {
+            "$ref": "#/components/schemas/ClientDetails"
+          },
+          "itemDetails": {
+            "$ref": "#/components/schemas/ItemDetails"
+          },
+          "deliveryRequirements": {
+            "$ref": "#/components/schemas/DeliveryRequirements"
+          },
+          "collectionDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          },
+          "deliveryDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          },
+          "additionalDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalDetailsItem"
+            },
+            "nullable": true
+          },
+          "returnVehicle": {
+            "$ref": "#/components/schemas/LinkedJobData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeliveryAddressChangedCallback": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "event": {
+            "$ref": "#/components/schemas/EventType"
+          },
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "payload": {
+            "$ref": "#/components/schemas/DeliveryAddressChangedCallback.Data"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeliveryAddressChangedCallback.Data": {
+        "type": "object",
+        "properties": {
+          "address1": {
+            "type": "string",
+            "nullable": true
+          },
+          "address2": {
+            "type": "string",
+            "nullable": true
+          },
+          "town": {
+            "type": "string",
+            "nullable": true
+          },
+          "county": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "postCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeliveryDateChangedCallback": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "event": {
+            "$ref": "#/components/schemas/EventType"
+          },
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "payload": {
+            "$ref": "#/components/schemas/DeliveryDateChangedCallback.Data"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeliveryDateChangedCallback.Data": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeliveryRequirements": {
+        "type": "object",
+        "properties": {
+          "deliveryTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryMethod": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentData": {
+        "type": "object",
+        "properties": {
+          "jobHeader": {
+            "$ref": "#/components/schemas/DocumentJobHeader"
+          },
+          "formDetails": {
+            "$ref": "#/components/schemas/FormDetailsWithQuestions"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentDataApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/DocumentData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentFormType": {
+        "enum": [
+          "Collection",
+          "Delivery"
+        ],
+        "type": "string"
+      },
+      "DocumentImage": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentImageData": {
+        "type": "object",
+        "properties": {
+          "jobHeader": {
+            "$ref": "#/components/schemas/DocumentJobHeader"
+          },
+          "formDetails": {
+            "$ref": "#/components/schemas/FormDetailsWithImages"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentImageDataApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/DocumentImageData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentJobHeader": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateRequired": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentPdfBase64Data": {
+        "type": "object",
+        "properties": {
+          "jobHeader": {
+            "$ref": "#/components/schemas/DocumentJobHeader"
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentPdfBase64Data.DocumentDetails"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentPdfBase64Data.DocumentDetails": {
+        "type": "object",
+        "properties": {
+          "formName": {
+            "type": "string",
+            "nullable": true
+          },
+          "pdfFile": {
+            "$ref": "#/components/schemas/DocumentPdfBase64Data.PdfFile"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentPdfBase64Data.PdfFile": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "binary": {
+            "type": "string",
+            "description": "Binary string in base64 format",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentPdfBase64DataApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/DocumentPdfBase64Data"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentPdfData": {
+        "type": "object",
+        "properties": {
+          "jobHeader": {
+            "$ref": "#/components/schemas/DocumentJobHeader"
+          },
+          "formDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormDetailsWithPdf"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentPdfDataApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/DocumentPdfData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentPdfFile": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventType": {
+        "enum": [
+          "CollectionDateChanged",
+          "CollectionAddressChanged",
+          "DeliveryDateChanged",
+          "DeliveryAddressChanged",
+          "ItemDetailsChanged",
+          "JobStatusChanged"
+        ],
+        "type": "string"
+      },
+      "ExpensesReportRsModel": {
+        "type": "object",
+        "properties": {
+          "orderNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "journeyType": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "startJobTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endJobTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "submittedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "completedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "mileage": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "readOnly": true
+          },
+          "carWash": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tolls": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "fuelVehicle": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "fuelHireCar": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "train": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "bus": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "taxi": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "other": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "additionalExpenses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StringStringKeyValuePair"
+            },
+            "nullable": true
+          },
+          "driverPay": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExpensesReportRsModelIEnumerableApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExpensesReportRsModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FormDetailsWithImages": {
+        "type": "object",
+        "properties": {
+          "formName": {
+            "type": "string",
+            "nullable": true
+          },
+          "signatureCapturedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentImage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FormDetailsWithPdf": {
+        "type": "object",
+        "properties": {
+          "formName": {
+            "type": "string",
+            "nullable": true
+          },
+          "signatureCapturedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pdfFile": {
+            "$ref": "#/components/schemas/DocumentPdfFile"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FormDetailsWithQuestions": {
+        "type": "object",
+        "properties": {
+          "formName": {
+            "type": "string",
+            "nullable": true
+          },
+          "signatureCapturedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionData"
+            },
+            "nullable": true
+          },
+          "recordedDamage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecordedDamage"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetTokenRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoryItemRsModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "oldValue": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoryLineRsModel": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "author": {
+            "type": "string",
+            "nullable": true
+          },
+          "changes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoryItemRsModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoryRsModel": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobType": {
+            "type": "string",
+            "nullable": true
+          },
+          "history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoryLineRsModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoryRsModelApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/HistoryRsModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImportJobRequest": {
+        "type": "object",
+        "properties": {
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "Optional",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItemDetails": {
+        "type": "object",
+        "properties": {
+          "itemType": {
+            "type": "string",
+            "description": "'Car' or 'Van'",
+            "nullable": true
+          },
+          "damageTree": {
+            "type": "string",
+            "nullable": true
+          },
+          "description1": {
+            "type": "string",
+            "nullable": true
+          },
+          "description2": {
+            "type": "string",
+            "nullable": true
+          },
+          "description3": {
+            "type": "string",
+            "nullable": true
+          },
+          "description4": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "chassisNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "isReturn": {
+            "type": "boolean"
+          },
+          "linkedUniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItemDetailsChangedCallback": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "event": {
+            "$ref": "#/components/schemas/EventType"
+          },
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "payload": {
+            "$ref": "#/components/schemas/ItemDetailsChangedCallback.Data"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItemDetailsChangedCallback.Data": {
+        "type": "object",
+        "properties": {
+          "itemType": {
+            "type": "string",
+            "nullable": true
+          },
+          "make": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "specification": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "chassisNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobData": {
+        "type": "object",
+        "properties": {
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "dealerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "submission": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "jobProfile": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobHeader": {
+            "$ref": "#/components/schemas/JobHeader"
+          },
+          "clientDetails": {
+            "$ref": "#/components/schemas/ClientDetails"
+          },
+          "itemDetails": {
+            "$ref": "#/components/schemas/ItemDetails"
+          },
+          "deliveryRequirements": {
+            "$ref": "#/components/schemas/DeliveryRequirements"
+          },
+          "collectionDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          },
+          "deliveryDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          },
+          "additionalDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalDetailsItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobDetails": {
+        "type": "object",
+        "properties": {
+          "jobSummary": {
+            "$ref": "#/components/schemas/JobSummary"
+          },
+          "itemDetails": {
+            "$ref": "#/components/schemas/ItemDetails"
+          },
+          "clientDetails": {
+            "$ref": "#/components/schemas/ClientDetails"
+          },
+          "collectionDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          },
+          "deliveryDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          },
+          "deliveryRequirements": {
+            "$ref": "#/components/schemas/DeliveryRequirements"
+          },
+          "additionalDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalDetailsItem"
+            },
+            "nullable": true
+          },
+          "linkedVehicle": {
+            "$ref": "#/components/schemas/LinkedJobDetails"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobDetailsApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/JobDetails"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobHeader": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/JobStatus"
+          },
+          "jobType": {
+            "type": "string",
+            "nullable": true
+          },
+          "utcAvailableDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "utcDateRequired": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultCCEmail": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobOfferRequest": {
+        "type": "object",
+        "properties": {
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverAccountVMID": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobOfferResponse": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryVehicle": {
+            "$ref": "#/components/schemas/VehicleDetailsSimple"
+          },
+          "returnVehicle": {
+            "$ref": "#/components/schemas/VehicleDetailsSimple"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobOfferResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/JobOfferResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobStatus": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "JobStatusChangedCallback": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "event": {
+            "$ref": "#/components/schemas/EventType"
+          },
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "payload": {
+            "$ref": "#/components/schemas/JobStatusChangedCallback.Data"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobStatusChangedCallback.Data": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobSummary": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobType": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobProfile": {
+            "type": "string",
+            "nullable": true
+          },
+          "availableDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dateRequired": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "agentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultCCEmail": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LinkedJobData": {
+        "type": "object",
+        "properties": {
+          "jobHeader": {
+            "$ref": "#/components/schemas/JobHeader"
+          },
+          "itemDetails": {
+            "$ref": "#/components/schemas/ItemDetails"
+          },
+          "deliveryRequirements": {
+            "$ref": "#/components/schemas/DeliveryRequirements"
+          },
+          "collectionDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          },
+          "deliveryDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LinkedJobDetails": {
+        "type": "object",
+        "properties": {
+          "jobSummary": {
+            "$ref": "#/components/schemas/JobSummary"
+          },
+          "itemDetails": {
+            "$ref": "#/components/schemas/ItemDetails"
+          },
+          "clientDetails": {
+            "$ref": "#/components/schemas/ClientDetails"
+          },
+          "collectionDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          },
+          "deliveryDetails": {
+            "$ref": "#/components/schemas/LocationDetails"
+          },
+          "deliveryRequirements": {
+            "$ref": "#/components/schemas/DeliveryRequirements"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationDetails": {
+        "type": "object",
+        "properties": {
+          "address1": {
+            "type": "string",
+            "nullable": true
+          },
+          "address2": {
+            "type": "string",
+            "nullable": true
+          },
+          "town": {
+            "type": "string",
+            "nullable": true
+          },
+          "county": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "postCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactTelephone": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuestionData": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "nullable": true
+          },
+          "answer": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecordedDamage": {
+        "type": "object",
+        "properties": {
+          "panel": {
+            "type": "string",
+            "nullable": true
+          },
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "damage1": {
+            "type": "string",
+            "nullable": true
+          },
+          "damage2": {
+            "type": "string",
+            "nullable": true
+          },
+          "damage3": {
+            "type": "string",
+            "nullable": true
+          },
+          "damage4": {
+            "type": "string",
+            "nullable": true
+          },
+          "damageNotes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "damageImageCaptured": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RevokeRequest": {
+        "type": "object",
+        "properties": {
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RevokeResponse": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicle": {
+            "$ref": "#/components/schemas/VehicleDetailsSimple"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RevokeResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/RevokeResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SavedJobData": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "utcDateRequired": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "returnUniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "returnDateRequired": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SavedJobDataApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/SavedJobData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SignatureParties.Signature": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringStringKeyValuePair": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubmitDocumentRequest": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "$ref": "#/components/schemas/SubmitDocumentRequest.HeaderData"
+          },
+          "document": {
+            "$ref": "#/components/schemas/SubmitDocumentRequest.DocumentData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubmitDocumentRequest.Answer": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubmitDocumentRequest.Damage": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubmitDocumentRequest.DocumentData": {
+        "type": "object",
+        "properties": {
+          "formType": {
+            "$ref": "#/components/schemas/SubmitDocumentRequest.FormType"
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubmitDocumentRequest.Answer"
+            },
+            "nullable": true
+          },
+          "damages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubmitDocumentRequest.Damage"
+            },
+            "nullable": true
+          },
+          "signed": {
+            "$ref": "#/components/schemas/SubmitDocumentRequest.SignatureParties"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubmitDocumentRequest.FormType": {
+        "enum": [
+          "CollectionForm",
+          "DeliveryForm",
+          "ReturnForm"
+        ],
+        "type": "string"
+      },
+      "SubmitDocumentRequest.HeaderData": {
+        "type": "object",
+        "properties": {
+          "moDelVMID": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubmitDocumentRequest.SignatureParties": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/SignatureParties.Signature"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/SignatureParties.Signature"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscribeData": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "$ref": "#/components/schemas/EventType"
+          },
+          "callbackUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Additional HTTP headers that will be sent with the callback request.\r\nCan be used to validate that request comes from MoDel system.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionData": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "$ref": "#/components/schemas/EventType"
+          },
+          "callbackUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionDataIEnumerableApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenData": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiration": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenDataApiResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/TokenData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnsubscribeData": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "$ref": "#/components/schemas/EventType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VehicleDetailsSimple": {
+        "type": "object",
+        "properties": {
+          "uniqueIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
